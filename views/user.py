@@ -1,5 +1,5 @@
 import json
-from flask import request
+from flask import request, jsonify
 from flask_restx import Resource, Namespace
 from implemented import auth_service
 from util import check_autorization
@@ -23,7 +23,7 @@ class UserView(Resource):
             "email":user.email
         }
 
-        return json.dump(result), 200
+        return jsonify(result), 200
 
     @check_autorization
     def patch(self):
@@ -41,7 +41,7 @@ class UserView(Resource):
             "email": user.email
         }
 
-        return json.dump(result), 200
+        return jsonify(result), 200
 
 @user_ns.route('/password')
 class AuthView(Resource):
@@ -63,4 +63,4 @@ class AuthView(Resource):
             "email": user.email
         }
 
-        return json.dump(result), 200
+        return jsonify(result), 200
